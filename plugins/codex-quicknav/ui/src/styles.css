@@ -68,8 +68,8 @@ button {
   .qn-page {
     @apply relative flex min-h-[100dvh] w-full flex-col items-center justify-center px-7 pt-20;
     /* Golden-ratio split: extra bottom padding lifts the visual center from
-       50% to roughly 42% of the viewport, matching Google's home page. */
-    padding-bottom: calc(5rem + 16vh);
+       50% to roughly 38% of the viewport, matching Google's home page. */
+    padding-bottom: calc(5rem + 24vh);
     background: var(--qn-bg);
   }
 

@@ -60,7 +60,7 @@ export default function App() {
     }
 
     let disposed = false;
-    const app = new McpApp({ name: "Quick Navigation", version: "1.0.2" }, {});
+    const app = new McpApp({ name: "Quick Navigation", version: "1.0.3" }, {});
 
     // Register every handler before connect(), as required by the MCP Apps
     // lifecycle. The host may send host-context notifications immediately.
