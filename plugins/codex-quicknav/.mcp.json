@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "codex_quicknav": {
+      "type": "stdio",
+      "command": "node",
+      "args": ["${PLUGIN_ROOT}/server/index.bundled.mjs"],
+      "cwd": "${PLUGIN_ROOT}",
+      "startup_timeout_sec": 15,
+      "tool_timeout_sec": 30
+    }
+  }
+}

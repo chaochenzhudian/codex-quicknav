@@ -1,0 +1,20 @@
+{
+  "name": "codex-quicknav",
+  "version": "1.0.0",
+  "description": "A persistent quick-link page in the Codex sidebar.",
+  "author": {
+    "name": "Codex"
+  },
+  "mcpServers": "./.mcp.json",
+  "interface": {
+    "displayName": "快捷导航",
+    "shortDescription": "Persistent website quick links",
+    "longDescription": "Adds a Quick Navigation entry to the Codex sidebar. Save website shortcuts with automatic favicons, then open them in the Codex in-app browser.",
+    "developerName": "Codex",
+    "category": "Productivity",
+    "capabilities": ["Interactive", "Read", "Write"],
+    "defaultPrompt": "Open my Quick Navigation page.",
+    "logo": "./assets/quicknav.svg",
+    "composerIcon": "./assets/quicknav.svg"
+  }
+}

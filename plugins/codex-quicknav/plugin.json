@@ -1,0 +1,24 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "codex-quicknav",
+  "version": "1.0.0",
+  "description": "A persistent quick-link page in the Codex sidebar. Add websites, fetch favicons, and open them in the in-app browser.",
+  "author": {
+    "name": "Codex"
+  },
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "displayName": "快捷导航",
+        "shortDescription": "Persistent website quick links",
+        "longDescription": "Adds a Quick Navigation entry to the Codex sidebar. Save website shortcuts with automatic favicons, then open them in the Codex in-app browser. Shortcuts and page state persist across navigation.",
+        "developerName": "Codex",
+        "category": "Productivity",
+        "capabilities": ["Interactive", "Read", "Write"],
+        "defaultPrompt": "Open my Quick Navigation page.",
+        "logo": "./assets/quicknav.svg",
+        "composerIcon": "./assets/quicknav.svg"
+      }
+    }
+  }
+}
