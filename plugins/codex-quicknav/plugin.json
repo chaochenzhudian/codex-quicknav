@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "codex-quicknav",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A persistent quick-link page in the Codex sidebar. Add websites, fetch favicons, and open them in the in-app browser.",
   "author": {
     "name": "Codex"

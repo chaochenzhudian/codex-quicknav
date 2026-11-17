@@ -29,7 +29,7 @@ const ICON_RAIL =
 
 const server = new McpServer({
   name: "Codex Quick Navigation",
-  version: "1.0.3",
+  version: "1.0.4",
   icons: [{ src: ICON_RAIL, mimeType: "image/svg+xml", sizes: ["any"] }],
 });
 
