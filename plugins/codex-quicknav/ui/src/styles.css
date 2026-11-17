@@ -293,6 +293,71 @@ button {
     @apply h-[58px] w-[58px] animate-pulse rounded-full;
     background: var(--qn-tile);
   }
+
+  .qn-manage {
+    @apply w-full max-w-[480px] text-left;
+    max-height: min(82dvh, 760px);
+    overflow-y: auto;
+  }
+
+  .qn-manage-header {
+    @apply flex items-start justify-between gap-3;
+  }
+
+  .qn-icon-button {
+    @apply flex h-7 w-7 shrink-0 items-center justify-center rounded-full transition-colors;
+    color: var(--qn-secondary);
+  }
+
+  .qn-icon-button:hover {
+    background: var(--qn-tile);
+    color: var(--qn-fg);
+  }
+
+  .qn-manage-section {
+    @apply mt-6 border-t pt-4;
+    border-color: var(--qn-border);
+  }
+
+  .qn-manage-list {
+    @apply mt-2 flex flex-col;
+  }
+
+  .qn-manage-item {
+    @apply flex items-center gap-3 rounded-xl px-2 py-2;
+  }
+
+  .qn-manage-item:hover {
+    background: var(--qn-tile);
+  }
+
+  .qn-manage-favicon {
+    @apply h-6 w-6 shrink-0 rounded-md object-contain;
+  }
+
+  .qn-manage-meta {
+    @apply flex min-w-0 flex-1 flex-col;
+  }
+
+  .qn-manage-name {
+    @apply truncate text-[13px] leading-5;
+    color: var(--qn-fg);
+  }
+
+  .qn-manage-url {
+    @apply truncate text-[11px] leading-4;
+    color: var(--qn-tertiary);
+  }
+
+  .qn-manage-remove {
+    @apply shrink-0 rounded-lg px-2 py-1 text-[12px] transition-colors;
+    color: var(--qn-secondary);
+  }
+
+  .qn-manage-remove:hover {
+    background: var(--qn-card-muted);
+    color: var(--qn-danger);
+  }
 }
 
 @keyframes qn-toast-in {

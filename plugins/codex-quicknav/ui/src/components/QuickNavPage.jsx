@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { AddShortcutDialog } from "./AddShortcutDialog";
 import { ConfirmDeleteDialog } from "./ConfirmDeleteDialog";
-import { CloudMark, PlusGlyph } from "./QuickNavIcon";
+import { ManageDialog } from "./ManageDialog";
+import { CloudMark } from "./QuickNavIcon";
 import { ShortcutTile } from "./ShortcutTile";
 import { readState, writeState } from "../lib/storage";
 
@@ -11,8 +11,7 @@ export function QuickNavPage({ bridge }) {
   const initial = useMemo(() => readState(), []);
   const [shortcuts, setShortcuts] = useState(initial.shortcuts);
   const [loading, setLoading] = useState(initial.shortcuts.length === 0);
-  const [managing, setManaging] = useState(initial.manage);
-  const [addOpen, setAddOpen] = useState(false);
+  const [manageOpen, setManageOpen] = useState(false);
   const [url, setUrl] = useState("");
   const [name, setName] = useState("");
   const [adding, setAdding] = useState(false);
@@ -49,8 +48,8 @@ export function QuickNavPage({ bridge }) {
   }, [bridge]);
 
   useEffect(() => {
-    writeState({ shortcuts, manage: managing });
-  }, [shortcuts, managing]);
+    writeState({ shortcuts });
+  }, [shortcuts]);
 
   // Suppress the host's native context menu (which exposes DevTools) on this
   // page. Capture phase ensures nested dialogs cannot re-enable it.
@@ -95,14 +94,14 @@ export function QuickNavPage({ bridge }) {
     };
   }, []);
 
-  const openAdd = useCallback(() => {
+  const openManage = useCallback(() => {
     setAddError("");
-    setAddOpen(true);
+    setManageOpen(true);
   }, []);
 
-  const closeAdd = useCallback(() => {
+  const closeManage = useCallback(() => {
     if (adding) return;
-    setAddOpen(false);
+    setManageOpen(false);
     setAddError("");
   }, [adding]);
 
@@ -118,7 +117,6 @@ export function QuickNavPage({ bridge }) {
         setShortcuts((current) =>
           current.some((item) => item.id === shortcut.id) ? current : [...current, shortcut],
         );
-        setAddOpen(false);
         setUrl("");
         setName("");
         showToast(result.duplicate ? "这个网站已经在列表里了" : "已添加快捷方式");
@@ -162,54 +160,34 @@ export function QuickNavPage({ bridge }) {
   return (
     <main className="qn-page">
       <div className="qn-actions">
-        {hasShortcuts ? (
-          <button
-            type="button"
-            className="qn-text-button"
-            data-active={managing ? "true" : "false"}
-            onClick={() => setManaging((value) => !value)}
-          >
-            {managing ? "完成" : "管理"}
-          </button>
-        ) : null}
+        <button type="button" className="qn-text-button" onClick={openManage}>
+          管理
+        </button>
       </div>
 
       <section className="qn-hero">
         <CloudMark className="qn-cloud h-[68px] w-[68px]" />
         <h1 className="qn-title">我们要打开什么？</h1>
 
-        <div className="qn-grid" aria-label="快捷方式">
-          {shortcuts.map((shortcut) => (
-            <ShortcutTile
-              key={shortcut.id}
-              shortcut={shortcut}
-              managing={managing}
-              onOpen={handleOpen}
-              onDelete={setPendingDelete}
-            />
-          ))}
-
-          <div className="qn-tile">
-            <button
-              type="button"
-              className="flex w-full flex-col items-center gap-2.5 rounded-2xl outline-none"
-              aria-label="添加快捷方式"
-              onClick={openAdd}
-            >
-              <span className="qn-circle qn-add-circle">
-                <PlusGlyph className="h-[22px] w-[22px]" />
-              </span>
-              <span className="qn-label">添加</span>
-            </button>
+        {hasShortcuts ? (
+          <div className="qn-grid" aria-label="快捷方式">
+            {shortcuts.map((shortcut) => (
+              <ShortcutTile
+                key={shortcut.id}
+                shortcut={shortcut}
+                onOpen={handleOpen}
+                onDelete={setPendingDelete}
+              />
+            ))}
           </div>
-        </div>
+        ) : null}
 
         {loading && !hasShortcuts ? (
           <div className="qn-loading" role="status">正在加载快捷方式…</div>
         ) : null}
 
         {!loading && !hasShortcuts ? (
-          <p className="qn-empty-hint">还没有快捷方式。添加一个常用网站，之后从这里一键打开。</p>
+          <p className="qn-empty-hint">还没有快捷方式。点击管理添加一个常用网站，之后从这里一键打开。</p>
         ) : null}
 
         {hasShortcuts ? (
@@ -219,16 +197,18 @@ export function QuickNavPage({ bridge }) {
 
       <p className="qn-footer">快捷导航 · 状态会自动保留</p>
 
-      <AddShortcutDialog
-        open={addOpen}
+      <ManageDialog
+        open={manageOpen}
         busy={adding}
         error={addError}
         url={url}
         name={name}
+        shortcuts={shortcuts}
         onUrlChange={setUrl}
         onNameChange={setName}
-        onClose={closeAdd}
+        onClose={closeManage}
         onSubmit={handleAdd}
+        onDelete={setPendingDelete}
       />
 
       <ConfirmDeleteDialog

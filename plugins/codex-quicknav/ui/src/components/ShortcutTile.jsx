@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
-import { CloseGlyph } from "./QuickNavIcon";
 import { letterIcon } from "../lib/icons";
 
-export function ShortcutTile({ shortcut, managing, onOpen, onDelete }) {
+export function ShortcutTile({ shortcut, onOpen }) {
   const fallback = letterIcon(shortcut.name, shortcut.hostname);
   const [src, setSrc] = useState(shortcut.icon || fallback);
 
@@ -29,17 +28,6 @@ export function ShortcutTile({ shortcut, managing, onOpen, onDelete }) {
         </span>
         <span className="qn-label">{shortcut.name}</span>
       </button>
-      {managing ? (
-        <button
-          type="button"
-          className="qn-delete"
-          aria-label={`删除 ${shortcut.name}`}
-          title={`删除 ${shortcut.name}`}
-          onClick={() => onDelete(shortcut)}
-        >
-          <CloseGlyph />
-        </button>
-      ) : null}
     </div>
   );
 }

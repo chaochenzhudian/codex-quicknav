@@ -33925,7 +33925,7 @@ var RESOURCE_URI = "ui://codex-quicknav/index.html";
 var ICON_RAIL = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScyNCcgaGVpZ2h0PScyNCcgdmlld0JveD0nMCAwIDI0IDI0JyBmaWxsPSdub25lJyBzdHJva2U9JyM3NTc5N2YnIHN0cm9rZS13aWR0aD0nMS45JyBzdHJva2UtbGluZWNhcD0ncm91bmQnIHN0cm9rZS1saW5lam9pbj0ncm91bmQnPjxjaXJjbGUgY3g9JzEyJyBjeT0nMTInIHI9JzguNScvPjxwYXRoIGQ9J20xNS40IDguNi0xLjggNS01IDEuOCAxLjgtNXonLz48L3N2Zz4=";
 var server = new McpServer({
   name: "Codex Quick Navigation",
-  version: "1.0.4",
+  version: "1.0.5",
   icons: [{ src: ICON_RAIL, mimeType: "image/svg+xml", sizes: ["any"] }]
 });
 function jsonResult(value) {
