@@ -52,6 +52,16 @@ export function QuickNavPage({ bridge }) {
     writeState({ shortcuts, manage: managing });
   }, [shortcuts, managing]);
 
+  // Suppress the host's native context menu (which exposes DevTools) on this
+  // page. Capture phase ensures nested dialogs cannot re-enable it.
+  useEffect(() => {
+    const blockContextMenu = (event) => event.preventDefault();
+    document.addEventListener("contextmenu", blockContextMenu, true);
+    return () => {
+      document.removeEventListener("contextmenu", blockContextMenu, true);
+    };
+  }, []);
+
   // Restore scroll after the first paint that contains the cached shortcuts.
   useEffect(() => {
     if (restoredScroll.current) return;

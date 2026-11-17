@@ -19,7 +19,7 @@ export function CloudMark({ className = "h-16 w-16" }) {
 }
 
 /** Thin-line compass glyph that matches Codex's rail icons. */
-export function CompassGlyph({ className = "h-[18px] w-[18px]", strokeWidth = 1.5 }) {
+export function CompassGlyph({ className = "h-[18px] w-[18px]", strokeWidth = 1.9 }) {
   return (
     <svg
       className={className}

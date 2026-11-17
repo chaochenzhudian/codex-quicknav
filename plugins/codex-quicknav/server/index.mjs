@@ -17,20 +17,20 @@ const PLUGIN_ROOT = path.resolve(HERE, "..");
 const APP_HTML = path.join(PLUGIN_ROOT, "dist", "mcp-app.html");
 const RESOURCE_URI = "ui://codex-quicknav/index.html";
 
-// Inline glyphs keep the sidebar entrypoint available offline. Codex uses the
-// tool's icon first, then the MCP server icon for the navigation item.
-const ICON_LIGHT =
-  "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiM2YjcyODAiIHN0cm9rZS13aWR0aD0iMS40IiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjxjaXJjbGUgY3g9IjEyIiBjeT0iMTIiIHI9IjguNSIvPjxwYXRoIGQ9Im0xNS40IDguNi0xLjggNS01IDEuOCAxLjgtNXoiLz48L3N2Zz4=";
-const ICON_DARK =
-  "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiNhM2EzYTMiIHN0cm9rZS13aWR0aD0iMS40IiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjxjaXJjbGUgY3g9IjEyIiBjeT0iMTIiIHI9IjguNSIvPjxwYXRoIGQ9Im0xNS40IDguNi0xLjggNS01IDEuOCAxLjgtNXoiLz48L3N2Zz4=";
+// Inline glyph keeps the sidebar entrypoint available offline. Codex uses the
+// tool icon first, then this MCP server icon for the navigation item.
+//
+// Codex was rendering the previous theme="dark" variant (#a3a3a3) on the light
+// rail, which looked washed out next to the built-in icons. Ship one neutral
+// glyph instead: 1.9 stroke on a 24px grid plus #75797f matches the built-in
+// rail exactly (sampled: dark #767676, average #a6a6a6).
+const ICON_RAIL =
+  "data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScyNCcgaGVpZ2h0PScyNCcgdmlld0JveD0nMCAwIDI0IDI0JyBmaWxsPSdub25lJyBzdHJva2U9JyM3NTc5N2YnIHN0cm9rZS13aWR0aD0nMS45JyBzdHJva2UtbGluZWNhcD0ncm91bmQnIHN0cm9rZS1saW5lam9pbj0ncm91bmQnPjxjaXJjbGUgY3g9JzEyJyBjeT0nMTInIHI9JzguNScvPjxwYXRoIGQ9J20xNS40IDguNi0xLjggNS01IDEuOCAxLjgtNXonLz48L3N2Zz4=";
 
 const server = new McpServer({
   name: "Codex Quick Navigation",
-  version: "1.0.0",
-  icons: [
-    { src: ICON_LIGHT, mimeType: "image/svg+xml", sizes: ["any"] },
-    { src: ICON_DARK, mimeType: "image/svg+xml", sizes: ["any"], theme: "dark" },
-  ],
+  version: "1.0.2",
+  icons: [{ src: ICON_RAIL, mimeType: "image/svg+xml", sizes: ["any"] }],
 });
 
 function jsonResult(value) {
