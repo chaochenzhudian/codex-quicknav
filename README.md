@@ -18,12 +18,13 @@ No `npm install` is required. The MCP server is bundled with its runtime depende
 ## Use
 
 1. Click the compass icon in the sidebar.
-2. Click **添加**.
+2. Click **管理** in the top-right corner.
 3. Enter a URL. The name can be left blank.
-4. Click a shortcut to open it in the Codex in-app browser.
-5. Use **管理** to delete shortcuts.
+4. Click **保存**. The favicon is fetched automatically and the shortcut appears on the page.
+5. Click a shortcut to open it in the Codex in-app browser.
+6. Use **删除** inside the manage dialog to remove shortcuts.
 
-Shortcuts are stored locally at `~/.codex/quicknav/shortcuts.json` (`%USERPROFILE%\.codex\quicknav\shortcuts.json` on Windows). Page state, including scroll position and manage mode, is cached in `localStorage`.
+Shortcuts are stored locally at `~/.codex/quicknav/shortcuts.json` (`%USERPROFILE%\.codex\quicknav\shortcuts.json` on Windows). The cached shortcut list and scroll position are kept in `localStorage`.
 
 ## Update
 
